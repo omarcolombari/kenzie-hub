@@ -4,7 +4,6 @@ import Button from '../../Components/Button'
 import ModalPost from '../../Components/ModalPost'
 import ModalPut from '../../Components/ModalPut'
 import Card from "../../Components/Card"
-import api from "../../services/api"
 import { Cabeçalho, Header, Main, Navbar, TechsContainer } from './style'
 import { UserContext } from '../../Providers/Users'
 import { TechsContext } from '../../Providers/Techs'

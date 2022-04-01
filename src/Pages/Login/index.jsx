@@ -7,7 +7,7 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react'
 import { AiFillEye, AiFillEyeInvisible} from 'react-icons/ai'
-import api from "../../services/api"
+import api from "../../Services/api"
 import { toast } from "react-toastify"
 
 function Login({ authenticaded, setAuthenticaded}){

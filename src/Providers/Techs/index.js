@@ -1,4 +1,4 @@
-import api from '../../Services'
+import api from '../../Services/api'
 import { createContext, useState } from 'react'
 import { toast } from 'react-toastify'
 
@@ -10,7 +10,6 @@ export const TechsProvider = ({ children }) => {
     const loadTechs = (id) => {
         api.get(`users/${id}`)
         .then((res) => setTechs(res.data.techs))
-        .catch((err) => console.log(err))
     }
 
     const addTech = (token, data) => {
@@ -20,13 +19,20 @@ export const TechsProvider = ({ children }) => {
             }
         })
         .then((res) => {
-            console.log(res)
-            toast.success('Tecnologia criada com sucesso!')
-            setTechs([techs, ...res.data])
+            toast.success('Tecnologia criada com sucesso!',{
+                style:{
+                    background: '#343B41',
+                    color: 'white'
+                }
+            })
         })
         .catch((err) => {
-            console.log(err)
-            toast.error('Ops, algo deu errado!')
+            toast.error('Ops, algo deu errado!', {
+                style:{
+                    background: '#343B41',
+                    color: 'white'
+                }
+            })
         })
     }
 
@@ -37,12 +43,20 @@ export const TechsProvider = ({ children }) => {
             }
         })
         .then((res) => {
-            console.log(res)
-            toast.success('Dados alterados com sucesso!')
+            toast.success('Dados alterados com sucesso!',{
+                style:{
+                    background: '#343B41',
+                    color: 'white'
+                }
+            })
         })
         .catch((err) => {
-            console.log(err)
-            toast.error('Ops, algo deu errado!')
+            toast.error('Ops, algo deu errado!',{
+                style:{
+                    background: '#343B41',
+                    color: 'white'
+                }
+            })
         })
     }
 
@@ -54,11 +68,21 @@ export const TechsProvider = ({ children }) => {
         })
         .then((res) => {
             console.log(res)
-            toast.success('Tecnologia deletada com sucesso!')
+            toast.success('Tecnologia deletada com sucesso!',{
+                style:{
+                    background: '#343B41',
+                    color: 'white'
+                }
+            })
         })
         .catch((err) => {
             console.log(err)
-            toast.error('Ops, algo deu errado!')
+            toast.error('Ops, algo deu errado!',{
+                style:{
+                    background: '#343B41',
+                    color: 'white'
+                }
+            })
         })
     }
 

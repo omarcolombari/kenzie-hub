@@ -7,11 +7,12 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup';
 import InputSelect from "../../Components/InputSelecet"
 import Button from "../../Components/Button"
-import { toast } from "react-toastify"
-import api from "../../services/api"
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { UserContext } from '../../Providers/Users'
 
 function Signup({authenticaded}){
+
+    const { signup } = useContext(UserContext)
 
     const [options] = useState([
         'Primeiro módulo (Introdução ao Frontend)',
@@ -40,25 +41,7 @@ function Signup({authenticaded}){
 
     const onSubmit = (data) => {
         delete data.confirmPassword
-
-        api.post('/users', data)
-        .then(res =>{
-            toast.success('Conta criada com sucesso!', {
-                style:{
-                    background: '#343B41',
-                    color: 'white'
-                }
-            })
-            goLogin()
-        })
-        .catch(err => {
-            toast.error('Ops! Algo deu errado', {
-                style:{
-                    background: '#343B41',
-                    color: 'white'
-                }
-            })
-        })
+        signup(data, goLogin)
     }
 
     const goLogin = () => history.push('/')
