@@ -1,9 +1,14 @@
-import UserProvider from './Users'
+import { TechProvider } from './Techs'
+import { UserProvider } from './Users'
 
-const Provider = ({ children }) => {
+const Providers = ({ children }) => {
     return (
         <UserProvider>
-            {children}
+            <TechProvider>
+                {children}
+            </TechProvider>
         </UserProvider>
     )
 }
+
+export default Providers
