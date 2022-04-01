@@ -7,7 +7,7 @@ export const TechContext = createContext()
 export const TechProvider = ({ children }) => {
     const [tech, setTech] = useState([])
 
-    const addTech = (id, token, data) => {
+    const addTech = (token, data) => {
         api.post('/users/techs', data, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -16,6 +16,7 @@ export const TechProvider = ({ children }) => {
         .then((res) => {
             console.log(res)
             toast.success('Tecnologia criada com sucesso!')
+            setTech([tech, ...data])
         })
         .catch((err) => {
             console.log(err)
@@ -23,8 +24,8 @@ export const TechProvider = ({ children }) => {
         })
     }
 
-    const changeTech = (tech_id, id, token, data) => {
-        api.patch(`/users/techs/${tech_id}`, data, {
+    const changeTech = (tech_id, token, data) => {
+        api.put(`/users/techs/${tech_id}`, data, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -39,8 +40,8 @@ export const TechProvider = ({ children }) => {
         })
     }
 
-    const deleteTech = (tech_id, id, token, data) => {
-        api.delete(`/users/techs/${tech_id}`, data, {
+    const deleteTech = (tech_id, token) => {
+        api.delete(`/users/techs/${tech_id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
