@@ -1,12 +1,12 @@
-import { TechProvider } from './Techs'
+import { TechsProvider } from './Techs'
 import { UserProvider } from './Users'
 
 const Providers = ({ children }) => {
     return (
         <UserProvider>
-            <TechProvider>
+            <TechsProvider>
                 {children}
-            </TechProvider>
+            </TechsProvider>
         </UserProvider>
     )
 }

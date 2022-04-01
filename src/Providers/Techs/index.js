@@ -2,10 +2,16 @@ import api from '../../Services'
 import { createContext, useState } from 'react'
 import { toast } from 'react-toastify'
 
-export const TechContext = createContext()
+export const TechsContext = createContext()
 
-export const TechProvider = ({ children }) => {
-    const [tech, setTech] = useState([])
+export const TechsProvider = ({ children }) => {
+    const [techs, setTechs] = useState([])
+
+    const loadTechs = (id) => {
+        api.get(`users/${id}`)
+        .then((res) => setTechs(res.data.techs))
+        .catch((err) => console.log(err))
+    }
 
     const addTech = (token, data) => {
         api.post('/users/techs', data, {
@@ -16,7 +22,7 @@ export const TechProvider = ({ children }) => {
         .then((res) => {
             console.log(res)
             toast.success('Tecnologia criada com sucesso!')
-            setTech([tech, ...data])
+            setTechs([techs, ...res.data])
         })
         .catch((err) => {
             console.log(err)
@@ -57,9 +63,9 @@ export const TechProvider = ({ children }) => {
     }
 
     return (
-        <TechContext.Provider value={{ tech, addTech, changeTech, deleteTech }} >
+        <TechsContext.Provider value={{ techs, loadTechs, addTech, changeTech, deleteTech }} >
             {children}
-        </TechContext.Provider>
+        </TechsContext.Provider>
     )
 
 }

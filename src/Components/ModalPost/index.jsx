@@ -8,11 +8,11 @@ import Button from '../Button'
 import { useState } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useContext } from 'react'
-import { TechContext } from '../../Providers/Techs'
+import { TechsContext } from '../../Providers/Techs'
 
 function ModalPost({ setShowModalPost }){
 
-    const { addTech } = useContext(TechContext)
+    const { addTech } = useContext(TechsContext)
 
     const [options] = useState([
         'Iniciante',

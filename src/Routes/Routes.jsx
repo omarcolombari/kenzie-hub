@@ -1,7 +1,7 @@
 import { Switch, Route } from 'react-router-dom'
-import Dashboard from '../pages/Dashboard'
-import Login from '../pages/Login'
-import Signup from '../pages/Signup'
+import Dashboard from '../Pages/Dashboard'
+import Login from '../Pages/Login'
+import Signup from '../Pages/Signup'
 import { useState, useEffect } from 'react'
 
 
