@@ -3,10 +3,8 @@ import Input from '../Input'
 import InputSelect from '../InputSelecet'
 import { ButtonContainer, Container, ModalContainer, ModalTitle } from './style'
 import { useForm } from 'react-hook-form'
-import * as yup from 'yup'
 import Button from '../Button'
 import { useState } from 'react'
-import { yupResolver } from '@hookform/resolvers/yup'
 import { useContext } from 'react'
 import { TechsContext } from '../../Providers/Techs'
 
@@ -22,14 +20,8 @@ function ModalPut({ setShowModalPut, cardTech }){
     const [token] = useState(
         JSON.parse(localStorage.getItem('@kenziehub:token')) || ""
         )
-    const schema = yup.object().shape({
-        title: yup.string().required('Campo obrigatório')
-    })
 
-
-    const { register, formState: { errors }, handleSubmit } = useForm({
-        resolver: yupResolver(schema)
-    })
+    const { register, formState: { errors }, handleSubmit } = useForm()
 
     const onSubmit = async (data) => {
         changeTech(cardTech.id, token, data)
@@ -52,7 +44,7 @@ function ModalPut({ setShowModalPut, cardTech }){
                     <Input value={cardTech.title} error={errors.title?.message}
                     register={register} label='Nome' name='title'/>
                     <InputSelect
-                    value={cardTech.status}
+                    defaultValue={cardTech.status}
                     options={options} 
                     register={register}
                     label='Selecionar status' 
